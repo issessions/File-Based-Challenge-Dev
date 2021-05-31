@@ -177,18 +177,20 @@ git clone https://github.com/csivitu/ctfcli/ && cd ctfcli && sudo python3 setup.
 	2. Click **Settings**
 	3. Click **Access Tokens**
 	4. Click **Generate** and note down the resulting access token. 
-5. On your VM, run the following command. You will get two prompts, one for **CTFd’s URL** and another for your **personal admin access token to CTFd**. Enter these and press Enter. This will create a **.ctf/config** file in the repository.
-```
-ctf init
-```
-
-![ctf init](readme-images/ctf-init.png)
 
 6. Next, clone this repository.
 ```
 git clone <repo url>
 ```
-7. Create your own branch. You can name it after yourself for example.
+7. In the repository root, run:
+```
+ctf init
+```
+9. You will be prompted twice, once for **CTFd’s URL** and another time for your **CTFd access token**. Enter these and press Enter. A `.ctf/config` file will be created in the current directory.
+
+![ctf init](readme-images/ctf-init.png)
+
+8. Create your own branch. You can name it after yourself or after a the challenge you wish to develop.
 ```
 git branch louai
 git checkout louai
@@ -209,17 +211,17 @@ We are using **a fork of the original ctfd/ctfcli** because the original does no
 	3. https://github.com/PlatyPew/picoctf-2018-writeup 
 	4. https://github.com/csivitu/ctf-challenges 
 2. Organize your challenge in accordance with the directory structure described in the **General Organization** section.
-3. Go back to the root of the file-based challenges repository and run the **build.py** script against your challenge directory with the `make` flag. For example:
+3. Go back to the root of the file-based challenges repository and run the `build.py` script. For example:
 ```
 ./build.py make 01-WEB/0x00-ConnorsCornucopia/
 ```
-8. Check if build.py produced any errors. The output should look like this:
+8. Check if `build.py` produced any errors. The output should look like this:
 
 ![build-py-output.png](readme-images/build-py-output.png)
 
 9. If there are no errors, you are ready to deploy the challenge to CTFd. Note this does not mean the challenge’s logic is sound, only that it builds correctly. Challenge logic will be verified in the testing phase. 
 
-**What did build.py do?**
+**What did `build.py` do?**
 
 You will notice that two files have been created in each challenge directory:
 1. **challenge.yml**: this is CTFd standard deployment file. We do not create directly but generate it programmatically because it requires us to write instructions and hints in HTML inside a YAML file which is very cumbersome and unrealistic for challenges with a long set of instructions.
