@@ -17,7 +17,7 @@ At the root of this git repository, a directory is created for each challenge **
 
 For example, you might create a **category folder** called “01-WEB”. Inside “01-WEB”, you can have a number of **challenge folders** such as “0x00-SQLInjection1” and “0x01-TreeTraversal”. 
 
-Each challenge folder has **two subdirectories**, each of which contains a number of files. 
+Each challenge folder has **two subdirectories**:
 - **player_files (Optional)**: contains any files the challenge developer wishes to share with the players.
 	- Anything like a JSON dump, a binary, etc. 
 - **documentation (Required)**: contains the challenge's documentation files including:
