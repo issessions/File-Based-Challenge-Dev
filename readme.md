@@ -13,17 +13,17 @@ This repository is strictly for **File-Based Challenges**. Hosted Challenges are
 
 ## General Organization
 
-At the root of this git repository, a directory is created for each **Challenge Category**. Each category folder contains a set of challenge folders representing individual challenges. 
+At the root of this git repository, a directory is created for each challenge **category**. Each category folder contains a set of challenge folders representing individual challenges. 
 
-For example, you might create a **Category folder** called “01-WEB”. Inside “01-WEB”, you can have a number of **challenge directories** such as “0x00-SQLInjection1” and “0x01-TreeTraversal”. 
+For example, you might create a **category** called “01-WEB”. Inside “01-WEB”, you can have a number of **challenge directories** such as “0x00-SQLInjection1” and “0x01-TreeTraversal”. 
 
 Each challenge directory has **two subdirectories**, each of which contains a number of files. 
 - **player_files (Optional)**: contains any files the challenge developer wishes to share with the players.
 	- Anything like a JSON dump, a binary, etc. 
 - **documentation (Required)**: contains the challenge's documentation files including:
 	- **manifest.yml (Required)**: contains challenge metadata including challenge name, author, category, point value, flags, dependencies, tags, etc.
-	- **instructions.txt (Required)**: contains the challege's instructions or in other words, what students see on CTFd when they click a particular challenge.
-	- **hint.txt (Optional)**: contains a hint that can aid the player in solving the challenge. The hint can be free or may have a cost associated with it. The cost is deducted from the team's total points. The hint_cost is not specified in hint.txt, only the hint itself. The hint_cost is specified using the "hint_cost" key in manifest.yml
+	- **instructions.txt (Required)**: contains the challege's instructions or in other words, what players see on CTFd when they click a particular challenge.
+	- **hint.txt (Optional)**: contains a hint that can aid the player in solving the challenge. The hint can be free or may have a cost associated with it. The cost is deducted from the team's total points. The hint_cost is not specified in hint.txt, only the hint itself. The hint_cost is specified using the `hint_cost` key in manifest.yml
 	- **solution.txt (Required)**: contains a detailed walkthrough of the challenge solution for mentors and/or students. Should contain the flags BUT CTFd will base submissions based on what is in the “flags” keys in manifest.yml.
 
 Here is an example CTF with two categories and two challenges, one in each category:
@@ -39,9 +39,9 @@ This is important because CTFd requires a challenge to be present before another
 ## Challenge Documentation
 
 ### The `manifest.yml` File
-A challenge’s point value can be static or dynamic (based on the # of solves). They can have multiple flags (case-sensitive and case-insensitive). They can have associated tags that perhaps indicate the challenge’s difficulty level, a particular theme, or a useful tool that may aid in solving the challenge. Challenges can also have a cap of the number of attempts. 
+The **challenge** key in `manifest.yml` is used to set challenge metadata. Its has subkeys such as **type** which determines if a challenge's point value is static or dynamic based on the number of solves. Another subkey **tags** can be used to assign keywords to a challenge that indicate the challenge’s difficulty level, a particular theme, or perhaps a useful tool that may aid in solving the challenge.
 
-Here are a couple of common examples of a manifest.yml file, one for a static challenge and another for a dynamic challenge:
+Here are a two examples of a `manifest.yml` file, one for a static challenge and another for a dynamic challenge:
 
 **Example Standard Challenge (Non-Dynamic)**
 ```
@@ -223,7 +223,7 @@ We are using **a fork of the original ctfd/ctfcli** because the original does no
 
 You will notice that two files have been created in each challenge directory:
 1. **challenge.yml**: this is CTFd standard deployment file. We do not create directly but generate it programmatically because it requires us to write instructions and hints in HTML inside a YAML file which is very cumbersome and unrealistic for challenges with a long set of instructions.
-2. **(ChallengeName).zip**: this is a zipped up version of the contents of the player_files directory as well as instructions.txt. This prevents the user from having to click on each challenge file individually to download it. It also includes the instructions.txt file for those obsessed with the command line and do not wish to keep revisiting CTFd.
+2. **[ChallengeName].zip**: this is a zipped up version of the contents of the player_files directory as well as instructions.txt. This prevents the user from having to click on each challenge file individually to download it. It also includes the instructions.txt file for those obsessed with the command line and do not wish to keep revisiting CTFd.
 
 
 ### Deployment
