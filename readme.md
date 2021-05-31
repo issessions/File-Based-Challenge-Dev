@@ -13,11 +13,11 @@ This repository is strictly for **File-Based Challenges**. Hosted Challenges are
 
 ## General Organization
 
-At the root of this git repository, a directory is created for each challenge **category**. Each category folder contains a set of challenge folders representing individual challenges. 
+At the root of this git repository, a directory is created for each challenge **category**. Each category folder contains another set of folders representing individual challenges. 
 
-For example, you might create a **category** called “01-WEB”. Inside “01-WEB”, you can have a number of **challenge directories** such as “0x00-SQLInjection1” and “0x01-TreeTraversal”. 
+For example, you might create a **category folder** called “01-WEB”. Inside “01-WEB”, you can have a number of **challenge folders** such as “0x00-SQLInjection1” and “0x01-TreeTraversal”. 
 
-Each challenge directory has **two subdirectories**, each of which contains a number of files. 
+Each challenge folder has **two subdirectories**, each of which contains a number of files. 
 - **player_files (Optional)**: contains any files the challenge developer wishes to share with the players.
 	- Anything like a JSON dump, a binary, etc. 
 - **documentation (Required)**: contains the challenge's documentation files including:
