@@ -6,25 +6,29 @@
 
 Challenges must be organized in a standard format in order to:
 - Automate deployment to CTFd
-- Facilitate the creation of a development -> testing -> production pipeline
+- Facilitate the creation of a CI/CD pipeline
 - Make it easier to modify challenge state over time and on game day
 
 This repository is strictly for **File-Based Challenges**. Hosted Challenges are maintained in a different repository.
 
+## Assumptions
+
+This repository is associated with the **Chik-p** project and as such makes the assumption that you are using CTFd as a CTFd Management platform.
+
 ## General Organization
 
-At the root of this git repository, a directory is created for each challenge **category**. Each category folder contains another set of folders representing individual challenges. 
+Located at the root of this Github repository, a directory is created for each challenge **category**. Each category folder can contain one or more subfolders representing individual challenges. 
 
-For example, you might create a **category folder** called “01-WEB”. Inside “01-WEB”, you can have a number of **challenge folders** such as “0x00-SQLInjection1” and “0x01-TreeTraversal”. 
+For example, you can create a **category** folder called “01-WEB”. Inside “01-WEB”, you can have a number of **challenge** subfolders such as “0x00-SQLInjection1” and “0x01-TreeTraversal”. 
 
 Each challenge folder has **two subdirectories**:
-- **player_files (Optional)**: contains any files the challenge developer wishes to share with the players.
+- `player_files` (Optional): contains any files the challenge developer wishes to share with the players.
 	- Anything like a JSON dump, a binary, etc. 
-- **documentation (Required)**: contains the challenge's documentation files including:
-	- **manifest.yml (Required)**: contains challenge metadata including challenge name, author, category, point value, flags, dependencies, tags, etc.
-	- **instructions.txt (Required)**: contains the challege's instructions or in other words, what players see on CTFd when they click a particular challenge.
-	- **hint.txt (Optional)**: contains a hint that can aid the player in solving the challenge. The hint can be free or may have a cost associated with it. The cost is deducted from the team's total points. The hint_cost is not specified in hint.txt, only the hint itself. The hint_cost is specified using the `hint_cost` key in manifest.yml
-	- **solution.txt (Required)**: contains a detailed walkthrough of the challenge solution for mentors and/or students. Should contain the flags BUT CTFd will base submissions based on what is in the “flags” keys in manifest.yml.
+- `documentation` (Required): contains the challenge's documentation files including:
+	- `manifest.yml` (Required): contains challenge metadata including challenge name, author, category, point value, flags, dependencies, tags, etc.
+	- `instructions.txt` (Required): contains the challege's instructions or in other words, what players see on CTFd when they click a particular challenge.
+	- `hint.txt` (Optional): contains a hint that can aid the player in solving the challenge. The hint can be free or may have a cost associated with it. The cost is deducted from the team's total points. The hint_cost is not specified in hint.txt, only the hint itself. The hint_cost is specified using the `hint_cost` key in `manifest.yml`
+	- `solution.txt` (Required): contains a detailed walkthrough of the challenge solution for mentors and/or students. Should contain the flag(s). CTFd, however, will base submissions based on what is in the `flags` keys in `manifest.yml`.
 
 Here is an example CTF with two categories and two challenges, one in each category:
 
@@ -32,9 +36,9 @@ Here is an example CTF with two categories and two challenges, one in each categ
 
 ## Deployment Order
 
-Note the number at the beginning of each category and challenge folder. This number is used to force deployment scripts to deploy challenges in a specific order. 
+Note the number at the beginning of each category and challenge folder. This number is used to force deployment scripts to deploy challenges in a specific order; CTFd requires a challenge to be present before another challenge marks it as a dependency. 
 
-This is important because CTFd requires a challenge to be present before another challenge marks it as a dependency. For example, SQLInjection2 cannot refer to SQLInjection1 as dependency until SQLInjection1 is has been deployed to CTFd.   
+For example, SQLInjection2 cannot refer to SQLInjection1 as dependency until SQLInjection1 is has been deployed to CTFd.   
 
 ## Challenge Documentation
 
@@ -148,7 +152,7 @@ Use the following guidelines when creating the instructions.txt file. Make sure 
 - Are there any steps to convert the challenge solution to a standardized flag format?
 
 ### The `hint.txt` File
-Provide a helpful hint here. Hints can be free or paid. If paid, the hint is deducted from the team’s score. The hint_cost key in manifest.yml specifies the cost of the hint.
+Provide a helpful hint here. Hints can be free or paid. If paid, the hint is deducted from the team’s score. The `hint_cost` key in `manifest.yml` specifies the cost of the hint.
 
 ### The `solution.txt` File
 Provide an in-depth explanation of the challenge! Mentors will refer to this solution when helping students during the CTF.
@@ -215,11 +219,11 @@ We are using **a fork of the original ctfd/ctfcli** because the original does no
 ```
 ./build.py make 01-WEB/0x00-ConnorsCornucopia/
 ```
-8. Check if `build.py` produced any errors. The output should look like this:
+4. Check if `build.py` produced any errors. The output should look like this:
 
 ![build-py-output.png](readme-images/build-py-output.png)
 
-9. If there are no errors, you are ready to deploy the challenge to CTFd. Note this does not mean the challenge’s logic is sound, only that it builds correctly. Challenge logic will be verified in the testing phase. 
+5. If there are no errors, you are ready to deploy the challenge to CTFd. Note this does not mean the challenge’s logic is sound, only that it builds correctly. Challenge logic will be verified in the testing phase. 
 
 **What did `build.py` do?**
 
