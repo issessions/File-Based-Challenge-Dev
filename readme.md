@@ -32,7 +32,7 @@ Each challenge folder has **two subdirectories**:
 
 Here is an example CTF with two categories and two challenges, one in each category:
 
-![Repository Structure](https://github.com/abboudl/ISSessionsCTF2022-File-Based-Challenges/blob/main/readme-images/repo-structure.png)
+![Repository Structure](readme-images/repo-structure.png)
 
 ## Deployment Order
 
